@@ -8,17 +8,16 @@ const sass = require('gulp-sass')(require('sass'));
 
 
 jsMin = (cb)=>{
-    gulp.src("./src/js/*.js")
+    gulp.src("./src/scripts/*.scripts")
         .pipe(uglify())
         .pipe(gulp.dest("./dist/js/"));
     cb();
 }
 
 cssMin = (cb)=>{
-    gulp.src("./src/css/*.css")
+    gulp.src("./src/css/*.styles")
         .pipe(cleanCss())
-        .pipe(gulp.dest("./dist/css/"))
-        .pipe(gulp.dest( './src/css/'));
+        .pipe(gulp.dest("./dist/css/"));
     cb();
 }
 
@@ -32,11 +31,10 @@ htmlMin = (cb)=>{
 sassCom = (cb) => {
     gulp.src('./src/sass/**/*.scss')
         .pipe(sass())
-        .pipe(gulp.dest( './src/css/style.min.css'))
+        .pipe(gulp.dest( './src/css'))
         .pipe(gulp.dest('./dist/css/' ));
     cb();
 }
-
 
 
 exports.default= series(jsMin, cssMin, htmlMin, sassCom);
